@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 引入jdbc 配置 -->
+    <context:property-placeholder location="classpath:jdbc.properties" system-properties-mode="FALLBACK" />
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!-- SqlSessionFactory   -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 配置数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- 配置类的别名 -->
+        <property name="typeAliasesPackage" value="com.zx.sys.domain" />
+        <!-- 配置分页插件 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
+        <!-- 配置mapper映射文件 -->
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"></property>
+    </bean>
+
+    <!-- Mapper 接口的代理类的扫描配置  哪些Mapper接口 需要生成代理类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 需要生成的代理类的mapper的包名 -->
+        <property name="basePackage" value="com.mrt.sys.mapper"  />
+        <!-- 每个代理类生成 需要SqlSession  -->
+        <!--
+          默认可以缺省配置  会自动装配  但是 当应用程序  有多个数据源时  需要指定
+         -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <!-- 配置事务 -->
+    <bean id="dataSourceTransactionManager"   class="org.springframework.jdbc.datasource.DataSourceTransactionManager"   >
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!-- 注解形式的事务管理 -->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager" />
+    <!--  开启组件扫描 -->
+    <context:component-scan base-package="com.zx" />
+</beans>
