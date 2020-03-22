@@ -1,5 +1,6 @@
 package com.zx.sys.controller;
 
+import com.zx.common.base.controller.BaseController;
 import com.zx.sys.form.SysCompanyForm;
 import com.zx.sys.query.SysCompanyQuery;
 import com.zx.sys.service.ISysCompanyService;
@@ -9,18 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 //表示返回的类都是JSON
 @RestController
 @RequestMapping("company")
-public class SysCompanyController {
+public class SysCompanyController extends BaseController<SysCompanyQuery,SysCompanyForm> {
 
     @Autowired
     private ISysCompanyService sysCompanyService;
 
-    @RequestMapping("page.do")
-    public Object page(SysCompanyQuery query){
-        return sysCompanyService.queryPage(query);
-    }
-
-    @RequestMapping("add.do")
-    public Object add(SysCompanyForm form){
-        return sysCompanyService.add(form);
+    public SysCompanyController(ISysCompanyService sysCompanyService){
+        super(sysCompanyService);
     }
 }
