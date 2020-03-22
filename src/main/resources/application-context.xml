@@ -31,7 +31,7 @@
     <!-- Mapper 接口的代理类的扫描配置  哪些Mapper接口 需要生成代理类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 需要生成的代理类的mapper的包名 -->
-        <property name="basePackage" value="com.mrt.sys.mapper"  />
+        <property name="basePackage" value="com.zx.sys.mapper"  />
         <!-- 每个代理类生成 需要SqlSession  -->
         <!--
           默认可以缺省配置  会自动装配  但是 当应用程序  有多个数据源时  需要指定

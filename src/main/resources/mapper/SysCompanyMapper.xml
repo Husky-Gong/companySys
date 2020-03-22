@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.sys.mapper.SysCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.zx.sys.vo.SysCompanyVO">
+    <!--@mbg.generated-->
+    <!--@Table sys_company-->
+    <id column="id" property="id" />
+    <result column="comp_name" property="compName" />
+    <result column="legal_person" property="legalPerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, comp_name, legal_person
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_company
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from sys_company
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zx.sys.form.SysCompanyForm" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_company (comp_name, legal_person)
+    values (#{compName}, #{legalPerson})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zx.sys.form.SysCompanyForm">
+    <!--@mbg.generated-->
+    update sys_company
+    set comp_name = #{compName},
+      legal_person = #{legalPerson}
+    where id = #{id}
+  </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from sys_company
+  </select>]
+
+</mapper>

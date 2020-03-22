@@ -9,7 +9,7 @@ import com.zx.common.base.Query;
 import com.zx.common.base.mapper.BaseMapper;
 import com.zx.common.base.service.IBaseService;
 
-public class BaseServiceImpl implements IBaseService<Query, Form> {
+public class BaseServiceImpl implements IBaseService<Query,Form> {
 
     private BaseMapper baseMapper;
 

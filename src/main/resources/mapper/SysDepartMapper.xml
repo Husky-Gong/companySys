@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.sys.mapper.SysDepartMapper">
+  <resultMap id="BaseResultMap" type="com.zx.sys.domain.SysDepart">
+    <!--@mbg.generated-->
+    <!--@Table sys_depart-->
+    <id column="id" property="id" />
+    <result column="dept_name" property="deptName" />
+    <result column="comp_id" property="compId" />
+    <result column="flag" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, dept_name, comp_id, flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sys_depart
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from sys_depart
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zx.sys.domain.SysDepart" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_depart (dept_name, comp_id, flag)
+    values (#{deptName}, #{compId}, #{flag})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zx.sys.domain.SysDepart" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sys_depart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="compId != null">
+        comp_id,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptName != null">
+        #{deptName},
+      </if>
+      <if test="compId != null">
+        #{compId},
+      </if>
+      <if test="flag != null">
+        #{flag},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zx.sys.domain.SysDepart">
+    <!--@mbg.generated-->
+    update sys_depart
+    <set>
+      <if test="deptName != null">
+        dept_name = #{deptName},
+      </if>
+      <if test="compId != null">
+        comp_id = #{compId},
+      </if>
+      <if test="flag != null">
+        flag = #{flag},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zx.sys.domain.SysDepart">
+    <!--@mbg.generated-->
+    update sys_depart
+    set dept_name = #{deptName},
+      comp_id = #{compId},
+      flag = #{flag}
+    where id = #{id}
+  </update>
+</mapper>
