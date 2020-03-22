@@ -3,9 +3,9 @@ package com.zx.common.base;
 //所有query层类的基类
 public class Query {
     //页码
-    private Integer page;
+    private Integer page = 1;
     //每页条数
-    private Integer limit;
+    private Integer limit = 10;
 
     public Integer getPage() {
         return page;

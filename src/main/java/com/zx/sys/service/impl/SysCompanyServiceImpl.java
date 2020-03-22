@@ -4,6 +4,7 @@ import com.zx.common.base.mapper.BaseMapper;
 import com.zx.common.base.service.impl.BaseServiceImpl;
 import com.zx.sys.mapper.SysCompanyMapper;
 import com.zx.sys.service.ISysCompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysCompanyServiceImpl extends BaseServiceImpl implements ISysCompanyService {
 
+    @Autowired
     private SysCompanyMapper companyMapper;
 
     public SysCompanyServiceImpl(SysCompanyMapper companyMapper) {

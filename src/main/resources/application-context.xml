@@ -46,5 +46,5 @@
     <!-- 注解形式的事务管理 -->
     <tx:annotation-driven transaction-manager="dataSourceTransactionManager" />
     <!--  开启组件扫描 -->
-    <context:component-scan base-package="com.zx" />
+    <context:component-scan base-package="com.zx.sys" />
 </beans>

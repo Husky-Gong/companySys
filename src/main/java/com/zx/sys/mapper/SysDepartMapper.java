@@ -1,8 +1,9 @@
 package com.zx.sys.mapper;
 
+import com.zx.common.base.mapper.BaseMapper;
 import com.zx.sys.domain.SysDepart;
 
-public interface SysDepartMapper {
+public interface SysDepartMapper extends BaseMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(SysDepart record);
